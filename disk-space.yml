@@ -1,0 +1,12 @@
+---
+- name: Vérification de l'espace disque
+  hosts: all
+  become: yes
+  tasks:
+    - name: Exécuter la commande df -h
+      command: df -h
+      register: disk_space
+
+    - name: Afficher le résultat
+      debug:
+        var: disk_space.stdout_lines
